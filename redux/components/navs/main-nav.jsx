@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import { LinkContainer } from 'react-router-bootstrap';
 
 import {
+    Button,
     FormGroup,
     FormControl,
     MenuItem,
@@ -53,7 +54,7 @@ class MainNav extends React.Component {
     }
 
     renderProjects = (parentEventKey) => {
-        let eventSubKey = 0;
+        let eventSubKey = 1;
 
         const projects = _.map(this.props.projects, project => {
             ++eventSubKey;
@@ -66,7 +67,13 @@ class MainNav extends React.Component {
         });
 
         return (
-            <NavDropdown eventKey={3} title="Projects" id="projects-nav-dropdown">
+            <NavDropdown eventKey={parentEventKey} title="Projects" id="projects-nav-dropdown">
+                <LinkContainer to="/projects/new">
+
+                <MenuItem key={-1} eventKey={parentEventKey + .1}>
+                    New Project
+                    </MenuItem>
+                </LinkContainer>
                 {projects}
             </NavDropdown>
         );
