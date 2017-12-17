@@ -19,4 +19,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('post', 'IssueController@store');
+Route::get('/issues', 'IssueController@issueList')->name('fetch-issues');
+Route::get('/issues/{issue}', 'IssueController@fetchIssue')->name('fetch-issue');

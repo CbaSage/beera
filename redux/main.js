@@ -1,9 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ReduxPromise from 'redux-promise';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from "redux";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.min.css';
+
 import './styles/styles.less';
 
 import App from './app.jsx';
+import reducers from './reducers';
 
-ReactDOM.render(<App />, document.getElementById('app-container'));
+const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+
+ReactDOM.render(
+    <Provider store={createStoreWithMiddleware(reducers)}>
+        <App />
+    </Provider>,
+    document.getElementById('app-container')
+);

@@ -13,7 +13,8 @@
 </head>
 <body>
 <div id="app-container"></div>
-
+<!-- JavaScript routing -->
+@routes
 <!-- Scripts -->
 <script src="{{ asset('js/redux/redux_app.js') }}"></script>
 {{--<script src="http://localhost:3000/js/redux_app.js"></script>--}}

@@ -12,8 +12,8 @@ const extractLess = new ExtractTextPlugin({
 module.exports = {
     entry: './redux/main.js',
     output: {
-        path: path.resolve(__dirname, 'public/js/redux'),
-        publicPath: path.resolve(__dirname, 'public/js/redux'),
+        path: path.resolve(__dirname, 'public/js/redux/'),
+        publicPath: 'js/redux/',
         filename: 'redux_app.js'
     },
     devtool: 'inline-source-map',
