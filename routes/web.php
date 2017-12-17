@@ -11,13 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/logout', 'Auth\LoginController@logout');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/api/issues', 'IssueController@issueList')->name('fetch-issues');
+Route::get('/api/issues/{issue}', 'IssueController@fetchIssue')->name('fetch-issue');
 
-Route::get('/issues', 'IssueController@issueList')->name('fetch-issues');
-Route::get('/issues/{issue}', 'IssueController@fetchIssue')->name('fetch-issue');
+Route::get('/api/projects', 'ProjectController@projectList')->name('fetch-projects');
+Route::post('/api/projects', 'ProjectController@store')->name('create-project');
+
+Route::get('/{path?}', [
+    'uses' => 'HomeController@index',
+    'as' => 'react',
+    'where' => ['path' => '.*']
+])->name('redux-home');

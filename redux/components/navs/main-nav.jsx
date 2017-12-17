@@ -27,6 +27,7 @@ export default function(props) {
                         <MenuItem divider/>
                         <MenuItem eventKey={3.4}>Separated link</MenuItem>
                     </NavDropdown>
+                    <NavItem href="/logout">logout</NavItem>
                 </Nav>
                 <Navbar.Form pullRight>
                     <FormGroup>
