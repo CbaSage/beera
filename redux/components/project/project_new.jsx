@@ -1,33 +1,23 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
 
 import {
-    ControlLabel,
-    FormControl,
-    FormGroup,
+    Col,
+    Panel,
+    Row
 } from 'react-bootstrap';
 
+import ProjectForm from './project_form.jsx';
 
-class ProjectForm extends React.Component {
+export default class ProjectNew extends React.Component {
     render() {
-        const { handleSubmit, pristine, rest, submitting} = this.props;
-
         return (
-            <form>
-                <FormGroup>
-                    <ControlLabel>Name</ControlLabel>
-                    <Field
-                        name="name"
-                        component={FormControl}
-                        type="text"
-                        placeholder="First Name"
-                    ></Field>
-                </FormGroup>
-            </form>
+            <Row>
+                <Col md={3}>
+                    <Panel bsStyle="primary" header="Create New Project">
+                        <ProjectForm />
+                    </Panel>
+                </Col>
+            </Row>
         );
     }
 }
-
-export default reduxForm({
-    form: 'project-form'
-})(ProjectForm);
