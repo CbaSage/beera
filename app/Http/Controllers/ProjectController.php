@@ -14,6 +14,8 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
-        return Project::create($request->all);
+        $this->validate($request, ['name' => 'required|unique:projects']);
+
+        return Project::create($request->all());
     }
 }

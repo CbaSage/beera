@@ -1,14 +1,28 @@
 import axios from 'axios';
 
+export const CREATE_PROJECT = 'CREATE_PROJECT';
 export const FETCH_PROJECTS = 'FETCH_PROJECTS';
 
-// export function fetchIssue(id) {
-//     const request = axios.get(route('fetch-issue', {issue: id}));
-//     return {
-//         type: FETCH_ISSUE,
-//         payload: request
-//     };
-// }
+import {alertApiErrors} from "../utils/axios_utils";
+
+export function createProject(values) {
+    return function (dispatch) {
+        return axios.post(route('create-project'), values)
+            .then(resp => {
+                dispatch(createProjectSuccess(resp))
+            })
+            .catch(err => {
+                dispatch(alertApiErrors(err))
+            });
+    }
+}
+
+function createProjectSuccess(resp) {
+    return {
+        type: CREATE_PROJECT,
+        payload: resp
+    };
+}
 
 export function fetchProjects() {
     const request = axios.get(route('fetch-projects'));

@@ -11,38 +11,25 @@ import {
 
 import ReduxFormGroup from '../form/redux_form_group.jsx';
 
+import { addAlert} from "../../actions/actions_alerts";
 
 class ProjectForm extends React.Component {
-    onSubmit = (values) => {
-        console.log(values);
-    }
-
     render() {
         const { handleSubmit, pristine, rest, submitting} = this.props;
 
         return (
-            <form onSubmit={handleSubmit(this.onSubmit)}>
-                <FormGroup>
-                    <ControlLabel>Name</ControlLabel>
+            <form onSubmit={handleSubmit(this.props.onSubmit)}>
                     <Field
                         name="name"
+                        label="Name"
                         component={ReduxFormGroup}
                         type="text"
                     />
-                </FormGroup>
 
                 <Button bsStyle="primary" type="submit">Submit</Button>
             </form>
         );
     }
-
-    renderField = ({ input, label, type, meta}) => (
-        <FormGroup validationState={meta.error && meta.touched ? 'error' : null}>
-            <ControlLabel>{label}</ControlLabel>
-            <FormControl {...input} placeholder={label} type={type}/>
-            <HelpBlock>{meta.touched ? meta.error : ''}</HelpBlock>
-        </FormGroup>
-    )
 }
 
 const validate = values => {

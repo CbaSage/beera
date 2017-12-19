@@ -17,6 +17,7 @@ class CreateProjectsTable extends Migration
             $table->increments('id');
             $table->char('name', 50);
             $table->timestamps();
+            $table->unique('name');
         });
 
         Schema::table('issues', function($table){
