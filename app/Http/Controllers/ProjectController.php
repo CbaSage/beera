@@ -9,13 +9,19 @@ class ProjectController extends Controller
 {
     public function projectList()
     {
-        return Project::all();
+        return Project::with('createdBy')->get();
     }
 
     public function store(Request $request)
     {
-        $this->validate($request, ['name' => 'required|unique:projects']);
+        $this->validate($request, [
+            'name' => 'required|unique:projects',
+            'abbreviation' => 'required|unique:projects',
+        ]);
 
-        return Project::create($request->all());
+        return Project::create(array_merge(
+            $request->all(),
+            ['created_by_id' => auth()->user()->id]
+        ));
     }
 }

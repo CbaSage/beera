@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -36,13 +37,21 @@ class MainNav extends React.Component {
             <Navbar inverse>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <a href="#">Beera</a>
+                        <Link to="/">
+                            Beera
+                        </Link>
                     </Navbar.Brand>
                 </Navbar.Header>
                 <Nav>
-                    <NavItem eventKey={1} href="#">Link</NavItem>
                     { this.renderProjects(3) }
                     <NavItem href="/logout">logout</NavItem>
+                </Nav>
+                <Nav>
+                    <LinkContainer to="/issues/new">
+                        <NavItem>
+                            New Issue
+                        </NavItem>
+                    </LinkContainer>
                 </Nav>
                 <Navbar.Form pullRight>
                     <FormGroup>

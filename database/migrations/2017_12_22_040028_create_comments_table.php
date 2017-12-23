@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIssuesTable extends Migration
+class CreateCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,16 @@ class CreateIssuesTable extends Migration
      */
     public function up()
     {
-        Schema::create('issues', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
+            $table->increments('id');
             $table->timestamps();
 
-            $table->increments('id');
-            $table->char('title', 255);
-            $table->float('story_points');
             $table->text('description');
-
             $table->integer('created_by_id')->unsigned();
             $table->foreign('created_by_id')->references('id')->on('users');
 
-            $table->integer('assigned_to_id')->unsigned();
-            $table->foreign('assigned_to_id')->references('id')->on('users');
-
-            $table->integer('parent_issue_id')->unsigned();
-            $table->foreign('parent_issue_id')->references('id')->on('issues');
+            $table->integer('parent_comment_id')->unsigned();
+            $table->foreign('parent_comment_id')->references('id')->on('comments');
         });
     }
 
@@ -39,6 +33,6 @@ class CreateIssuesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('issues');
+        Schema::dropIfExists('comments');
     }
 }

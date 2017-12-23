@@ -7,8 +7,11 @@ import thunk from 'redux-thunk';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
+import 'animate.css';
+import 'draft-js/dist/Draft.css';
 
 import './styles/styles.less';
+import './styles/editor.less';
 
 import App from './app.jsx';
 import reducers from './reducers';

@@ -16,7 +16,12 @@ class WindowAlerts extends React.Component {
             }, alert.timeout || 3000);
 
             return (
-                <Alert key={alert.message} bsStyle={alert.style || 'warning'}>{alert.message}</Alert>
+                <Alert key={alert.message} bsStyle={alert.style || 'warning'}
+                       className="slideInDown animated"
+                       style={ {position: 'fixed', width: '100%', zIndex: '1000'} }
+                >
+                    {alert.message}
+                </Alert>
             );
         });
     }
