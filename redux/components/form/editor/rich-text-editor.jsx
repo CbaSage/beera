@@ -1,5 +1,5 @@
 import React from 'react';
-import {Editor, EditorState, RichUtils} from 'draft-js';
+import {Editor, EditorState, RichUtils, convertFromRaw, convertToRaw} from 'draft-js';
 
 import BlockStyleControls from './block-style-controls.jsx';
 import InlineStyleControls from './inline-style-controls.jsx';
@@ -21,7 +21,10 @@ export default class RichTextEditor extends React.Component {
         this.state = {editorState: EditorState.createEmpty()};
 
         this.focus = () => this.refs.editor.focus();
-        this.onChange = (editorState) => this.setState({editorState});
+        this.onChange = (editorState) => {
+            this.setState({editorState});
+            this.props.handleChange(convertToRaw(editorState.getCurrentContent()));
+        }
 
         this.handleKeyCommand = (command) => this._handleKeyCommand(command);
         this.onTab = (e) => this._onTab(e);
@@ -100,7 +103,7 @@ export default class RichTextEditor extends React.Component {
                         handleKeyCommand={this.handleKeyCommand}
                         onChange={this.onChange}
                         onTab={this.onTab}
-                        placeholder="Tell a story..."
+                        placeholder={this.props.placeholder || ''}
                         ref="editor"
                         spellCheck={true}
                     />

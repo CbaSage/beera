@@ -17,12 +17,15 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
-            $table->text('description');
+            $table->text('body');
             $table->integer('created_by_id')->unsigned();
             $table->foreign('created_by_id')->references('id')->on('users');
 
             $table->integer('parent_comment_id')->unsigned();
             $table->foreign('parent_comment_id')->references('id')->on('comments');
+
+            $table->integer('commentable_id');
+            $table->string('commentable_type');
         });
     }
 

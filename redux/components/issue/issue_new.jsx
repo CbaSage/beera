@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import RichTextEditor from '../form/editor/rich-text-editor.jsx';
+
+import { createIssue } from "../../actions/actions_issues";
 
 import {
     Col,
@@ -12,23 +13,23 @@ import IssueForm from './issue_form.jsx';
 
 class IssueNew extends React.Component {
     handleSubmit = (values) => {
-        console.log(values)
+        this.props.createIssue(values);
     }
 
     render() {
         return (
-            <Row>
-                <Col md={3}>
-                    <Panel bsStyle="primary" header="Create New Issue">
-                        <IssueForm onSubmit={this.handleSubmit} />
-                    </Panel>
-                </Col>
-                <Col md={9}>
-                    <RichTextEditor />
-                </Col>
-            </Row>
+            <Panel bsStyle="primary" header="Create New Issue">
+                <Row>
+                    <Col md={10} mdOffset={1}>
+                        <IssueForm
+                            submitText="Create Issue"
+                            onSubmit={this.handleSubmit}
+                        />
+                    </Col>
+                </Row>
+            </Panel>
         );
     }
 }
 
-export default connect(null, null)(IssueNew);
+export default connect(null, { createIssue })(IssueNew);

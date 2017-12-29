@@ -16,7 +16,9 @@ Route::get('/logout', 'Auth\LoginController@logout');
 Auth::routes();
 
 Route::get('/api/issues', 'IssueController@issueList')->name('fetch-issues');
+Route::post('/api/issues', 'IssueController@store')->name('create-issue');
 Route::get('/api/issues/{issue}', 'IssueController@fetchIssue')->name('fetch-issue');
+
 
 Route::get('/api/projects', 'ProjectController@projectList')->name('fetch-projects');
 Route::post('/api/projects', 'ProjectController@store')->name('create-project');
