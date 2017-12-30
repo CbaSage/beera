@@ -18,7 +18,13 @@ const styleMap = {
 export default class RichTextEditor extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {editorState: EditorState.createEmpty()};
+        let { content } = props;
+
+        if (content) {
+            this.state = {editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(content)))};
+        } else {
+            this.state = {editorState: EditorState.createEmpty()};
+        }
 
         this.focus = () => this.refs.editor.focus();
         this.onChange = (editorState) => {

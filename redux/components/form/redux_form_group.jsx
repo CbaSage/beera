@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {convertFromRaw, convertToRaw} from 'draft-js';
 
 import {
@@ -25,13 +26,22 @@ export class ReduxRichTextEditorFormGroup extends React.Component {
         this.props.input.onChange(JSON.stringify(editorState));
     }
 
+    handleBlur = () => {
+        const {onBlur, name, value} = this.props.input;
+        onBlur(name, value);
+    }
+
     render() {
-        let { label, meta} = this.props;
+        let { label, meta, input} = this.props;
 
         return (
-            <FormGroup validationState={meta.error && meta.touched ? 'error' : null}>
+            <FormGroup validationState={meta.error && meta.touched ? 'error' : null} onBlur={this.handleBlur}>
                 <ControlLabel>{label}</ControlLabel>
-                <RichTextEditor handleChange={this.handleChange} placeholder={label}/>
+                <RichTextEditor
+                    handleChange={this.handleChange}
+                    placeholder={label}
+                    content={input.value}
+                />
                 <HelpBlock>{meta.touched ? meta.error : ''}</HelpBlock>
             </FormGroup>
         );

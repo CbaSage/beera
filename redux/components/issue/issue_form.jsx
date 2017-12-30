@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import _ from 'lodash';
@@ -11,7 +12,6 @@ import {
     HelpBlock
 } from 'react-bootstrap';
 
-import RichTextEditor from '../form/editor/rich-text-editor.jsx';
 import { ReduxInputFormGroup, ReduxSelectFormGroup, ReduxRichTextEditorFormGroup } from '../form/redux_form_group.jsx';
 import { fetchProjects } from "../../actions/actions_projects";
 
@@ -24,7 +24,7 @@ class IssueForm extends React.Component {
     }
 
     render() {
-        const { handleSubmit, pristine, rest, submitting} = this.props;
+        const { handleSubmit, pristine, rest, submitting, handleBlur, handleRichTextBlur} = this.props;
 
         if(_.isEmpty(this.props.projects)){
             return (
@@ -40,19 +40,28 @@ class IssueForm extends React.Component {
                         type="select"
                         options={this.renderProjectOptions()}
                         component={ReduxSelectFormGroup}
+                        onBlur={handleBlur}
                     />
                     <Field
                         name="title"
                         label="Title"
                         component={ReduxInputFormGroup}
                         type="text"
+                        onBlur={handleBlur}
                     />
-
+                    <Field
+                        name="story_points"
+                        label="Story Points"
+                        component={ReduxInputFormGroup}
+                        type="number"
+                        onBlur={handleBlur}
+                    />
                     <Field
                         name="description"
                         label="Description"
                         component={ReduxRichTextEditorFormGroup}
                         type="text"
+                        onBlur={handleRichTextBlur}
                     />
                     {/*<Field*/}
                         {/*name="title"*/}
@@ -66,7 +75,7 @@ class IssueForm extends React.Component {
                         {/*component={ReduxFormGroup}*/}
                         {/*type="textarea"*/}
                     {/*/>*/}
-                <Button bsStyle="primary" type="submit">{this.props.submitText || 'Submit'}</Button>
+                    {this.renderSubmitButton()}
             </form>
         );
     }
@@ -77,6 +86,16 @@ class IssueForm extends React.Component {
                 {project.name}
             </option>
         ));
+    }
+
+    renderSubmitButton = () => {
+        if(!this.props.submittable) {
+            return '';
+        }
+
+        return (
+            <Button bsStyle="primary" type="submit">{this.props.submitText || 'Submit'}</Button>
+        );
     }
 }
 
@@ -100,8 +119,21 @@ const ValidatedForm = reduxForm({
 })(IssueForm);
 
 
+ValidatedForm.propTypes = {
+    onBlur: PropTypes.func,
+    submittable: PropTypes.bool
+};
+
+ValidatedForm.defaultProps = {
+    onBlur: () => {},
+    submittable: true
+};
+
 function mapStateToProps(state) {
-    return {projects: state.projects};
+    return {
+        projects: state.projects
+    };
 }
+
 
 export default connect(mapStateToProps, { fetchProjects })(ValidatedForm);
