@@ -19,7 +19,7 @@ class IssuesHome extends React.Component {
         }
 
         return (
-            <IssuesTable issues={this.props.issues} />
+                <IssuesTable issues={_.toArray(this.props.issues)} />
         );
     }
 }

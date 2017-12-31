@@ -1,15 +1,15 @@
 import React from 'react';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 
 import { Panel } from 'react-bootstrap';
 
-import { fetchIssue } from '../../actions/actions_issues';
+import { fetchIssue, updateIssueField } from '../../actions/actions_issues';
 import IssueForm from './issue_form.jsx';
 
 class IssueShow extends React.Component {
     componentDidMount() {
         const { id } = this.props.match.params;
-
         this.props.fetchIssue(id);
     }
 
@@ -18,7 +18,12 @@ class IssueShow extends React.Component {
     }
 
     updateField = (fieldName, updatedValue) => {
-        console.log(fieldName, updatedValue);
+        const { issue } = this.props;
+        if(_.toString(issue[fieldName]) != _.toString(updatedValue)){
+            let changeset = {};
+            changeset[fieldName] = updatedValue;
+            this.props.updateIssueField(issue.id, changeset);
+        }
     }
 
     handleBlur = (event, newValue, prevValue) => {
@@ -56,4 +61,4 @@ function mapStateToProps(state, ownProps) {
     return {issue: state.issues[parseInt(ownProps.match.params.id)]}
 }
 
-export default connect(mapStateToProps, { fetchIssue })(IssueShow);
+export default connect(mapStateToProps, { fetchIssue, updateIssueField })(IssueShow);

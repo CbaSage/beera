@@ -9,7 +9,7 @@ import {
     HelpBlock
 } from 'react-bootstrap';
 
-import ReduxFormGroup from '../form/redux_form_group.jsx';
+import { ReduxInputFormGroup } from '../form/redux_form_group.jsx';
 
 import { addAlert} from "../../actions/actions_alerts";
 
@@ -22,14 +22,14 @@ class ProjectForm extends React.Component {
                     <Field
                         name="name"
                         label="Name"
-                        component={ReduxFormGroup}
+                        component={ReduxInputFormGroup}
                         type="text"
                     />
 
                     <Field
                         name="abbreviation"
                         label="Abbreviation"
-                        component={ReduxFormGroup}
+                        component={ReduxInputFormGroup}
                         type="text"
                     />
 

@@ -44,15 +44,24 @@ class MainNav extends React.Component {
                 </Navbar.Header>
                 <Nav>
                     { this.renderProjects(3) }
-                    <NavItem href="/logout">logout</NavItem>
                 </Nav>
                 <Nav>
-                    <LinkContainer to="/issues/new">
-                        <NavItem>
-                            New Issue
-                        </NavItem>
-                    </LinkContainer>
+                    <NavDropdown eventKey={4} title="Issues" id="issues-nav-dropdown">
+                        <LinkContainer to="/issues/new">
+                            <MenuItem eventKey={4.1}>
+                                New Issue
+                            </MenuItem>
+                        </LinkContainer>
+                        <LinkContainer to="/issues">
+                            <MenuItem eventKey={4.2}>
+                                All Issues
+                            </MenuItem>
+                        </LinkContainer>
+                    </NavDropdown>
                 </Nav>
+                <div className="pull-right">
+                    <NavItem href="/logout">logout</NavItem>
+                </div>
                 <Navbar.Form pullRight>
                     <FormGroup>
                         <FormControl type="text" placeholder="Search"/>
@@ -78,9 +87,8 @@ class MainNav extends React.Component {
         return (
             <NavDropdown eventKey={parentEventKey} title="Projects" id="projects-nav-dropdown">
                 <LinkContainer to="/projects/new">
-
-                <MenuItem key={-1} eventKey={parentEventKey + .1}>
-                    New Project
+                    <MenuItem key={-1} eventKey={parentEventKey + .1}>
+                        New Project
                     </MenuItem>
                 </LinkContainer>
                 {projects}

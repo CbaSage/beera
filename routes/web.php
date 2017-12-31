@@ -18,6 +18,7 @@ Auth::routes();
 Route::get('/api/issues', 'IssueController@issueList')->name('fetch-issues');
 Route::post('/api/issues', 'IssueController@store')->name('create-issue');
 Route::get('/api/issues/{issue}', 'IssueController@fetchIssue')->name('fetch-issue');
+Route::put('/api/issues/{issue}', 'IssueController@updateIssueField')->name('update-issue-field');
 
 
 Route::get('/api/projects', 'ProjectController@projectList')->name('fetch-projects');

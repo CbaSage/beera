@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Issue extends Model
 {
     protected $fillable = ['title', 'story_points', 'created_by_id', 'description', 'project_id'];
+    protected $with = ['project'];
 
     public function project() {
         return $this->belongsTo(Project::class);
