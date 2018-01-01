@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import WorkflowsHome from '../components/workflow/workflows_home.jsx';
 import WorkflowNew from '../components/workflow/workflow_new.jsx';
 
-export default function IssuesRoutes ({ match }) {
+export default function WorkflowRoutes ({ match }) {
   return (
       // here's a nested div
       <div>

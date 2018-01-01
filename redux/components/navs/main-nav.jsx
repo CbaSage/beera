@@ -69,9 +69,15 @@ class MainNav extends React.Component {
                 </Navbar.Form>
                 <Nav>
                     <NavDropdown eventKey={5} title="Configuration" id="config-nav-dropdown">
+                        <MenuItem header>Workflow</MenuItem>
                         <LinkContainer to="/workflows">
                             <MenuItem eventKey={4.1}>
                                 Workflows
+                            </MenuItem>
+                        </LinkContainer>
+                        <LinkContainer to="/workflow-statuses">
+                            <MenuItem eventKey={4.2}>
+                                Workflow Statuses
                             </MenuItem>
                         </LinkContainer>
                     </NavDropdown>

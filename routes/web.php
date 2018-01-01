@@ -27,6 +27,9 @@ Route::post('/api/projects', 'ProjectController@store')->name('create-project');
 Route::get('/api/workflows', 'WorkflowController@workflowList')->name('fetch-workflows');
 Route::post('/api/workflows', 'WorkflowController@store')->name('create-workflow');
 
+Route::get('/api/workflow-statuses', 'WorkflowStatusController@workflowStatusList')->name('fetch-workflow-statuses');
+Route::post('/api/workflow-statuses', 'WorkflowStatusController@store')->name('create-workflow-status');
+
 Route::get('/{path?}', [
     'uses' => 'HomeController@index',
     'as' => 'react',

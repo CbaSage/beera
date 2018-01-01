@@ -7,7 +7,7 @@ import {
 
 import { ReduxInputFormGroup } from '../form/redux_form_group.jsx';
 
-class WorkflowForm extends React.Component {
+class WorkflowStatusForm extends React.Component {
     render() {
         const { handleSubmit, pristine, rest, submitting} = this.props;
 
@@ -39,6 +39,6 @@ const validate = values => {
 }
 
 export default reduxForm({
-    form: 'workflow-form',
+    form: 'workflow-status-form',
     validate
-})(WorkflowForm);
+})(WorkflowStatusForm);

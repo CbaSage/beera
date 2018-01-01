@@ -18,13 +18,7 @@ class CreateWorkflowStatusesTable extends Migration
             $table->timestamps();
 
             $table->char('name', 50);
-            $table->text('description');
-
-            $table->integer('workflow_id')->unsigned();
-            $table->foreign('workflow_id')->references('id')->on('workflows');
-
-            $table->integer('previous_status_id')->unsigned()->nullable();
-            $table->foreign('previous_status_id')->references('id')->on('workflow_statuses');
+            $table->text('description')->nullable();
 
         });
     }
