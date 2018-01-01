@@ -24,6 +24,9 @@ Route::put('/api/issues/{issue}', 'IssueController@updateIssueField')->name('upd
 Route::get('/api/projects', 'ProjectController@projectList')->name('fetch-projects');
 Route::post('/api/projects', 'ProjectController@store')->name('create-project');
 
+Route::get('/api/workflows', 'WorkflowController@workflowList')->name('fetch-workflows');
+Route::post('/api/workflows', 'WorkflowController@store')->name('create-workflow');
+
 Route::get('/{path?}', [
     'uses' => 'HomeController@index',
     'as' => 'react',

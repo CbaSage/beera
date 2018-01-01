@@ -2,16 +2,12 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 import {
-    Button,
-    ControlLabel,
-    FormControl,
-    FormGroup,
-    HelpBlock
+    Button
 } from 'react-bootstrap';
 
 import { ReduxInputFormGroup } from '../form/redux_form_group.jsx';
 
-class ProjectForm extends React.Component {
+class WorkflowForm extends React.Component {
     render() {
         const { handleSubmit, pristine, rest, submitting} = this.props;
 
@@ -20,13 +16,6 @@ class ProjectForm extends React.Component {
                     <Field
                         name="name"
                         label="Name"
-                        component={ReduxInputFormGroup}
-                        type="text"
-                    />
-
-                    <Field
-                        name="abbreviation"
-                        label="Abbreviation"
                         component={ReduxInputFormGroup}
                         type="text"
                     />
@@ -46,16 +35,10 @@ const validate = values => {
         errors.name = 'Must be 40 characters or less'
     }
 
-    if (!values.abbreviation) {
-        errors.abbreviation = 'Required'
-    } else if (values.abbreviation.length > 5) {
-        errors.abbreviation = 'Must be 5 characters or less'
-    }
-
     return errors;
 }
 
 export default reduxForm({
     form: 'project-form',
     validate
-})(ProjectForm);
+})(WorkflowForm);

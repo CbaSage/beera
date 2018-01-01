@@ -67,6 +67,15 @@ class MainNav extends React.Component {
                         <FormControl type="text" placeholder="Search"/>
                     </FormGroup>
                 </Navbar.Form>
+                <Nav>
+                    <NavDropdown eventKey={5} title="Configuration" id="config-nav-dropdown">
+                        <LinkContainer to="/workflows">
+                            <MenuItem eventKey={4.1}>
+                                Workflows
+                            </MenuItem>
+                        </LinkContainer>
+                    </NavDropdown>
+                </Nav>
             </Navbar>
         );
     }
